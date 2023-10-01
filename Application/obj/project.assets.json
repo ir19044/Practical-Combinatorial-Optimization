@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Optimization/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Optimization.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Optimization.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Optimization/1.0.0": {
+      "type": "project",
+      "path": "../Optimization/Optimization.csproj",
+      "msbuildProject": "../Optimization/Optimization.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Optimization >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\ir15074\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Programmesana\\Magistrs\\I semestris\\Praktiska_kombinatoriala_optimizacija\\Mazais_praktiskais_darbs\\Practical-Combinatorial-Optimization\\Optimization\\Optimization.csproj": {
+              "projectPath": "D:\\Programmesana\\Magistrs\\I semestris\\Praktiska_kombinatoriala_optimizacija\\Mazais_praktiskais_darbs\\Practical-Combinatorial-Optimization\\Optimization\\Optimization.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
