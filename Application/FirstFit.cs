@@ -23,12 +23,14 @@ class FirstFit
     
     private static bool _isCoveredAllElements(List<int> uSet, List<Subset> solution)
     {
+        var totalSet = new List<int>(uSet);
+        
         foreach (var subset in solution)
         {
-            uSet.RemoveAll(elem => subset.SubSet.Contains(elem));
+            totalSet.RemoveAll(elem => subset.SubSet.Contains(elem));
         }
 
-        return !uSet.Any();
+        return !totalSet.Any();
     }
 
     private static IEnumerable<int> _findCoveredElements(IEnumerable<int> uSet, IEnumerable<Subset> solution)
