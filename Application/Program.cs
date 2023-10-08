@@ -1,6 +1,4 @@
-﻿using Optimization;
-
-namespace Application;
+﻿namespace Application;
 
 class Program
 {
@@ -36,10 +34,22 @@ class Program
     static void Main()
     {
         InitMembers();
-        
-        
-        var alg = new SimulatedAnnealing();
-        alg.Process(uSet, subsets);
+
+        // TODO: bug: 500, beta:3
+        //var temperature = Temperature.CreateWithDefaults();
+        var temperature = new Temperature(tempStateCount: 3);
+
+        var alg = new SimulatedAnnealing(temperature, beta: 3);
+        var solution = alg.Process(uSet, subsets);
+
+        foreach (var subset in solution)
+        {
+            foreach (var v in subset.SubSet)
+            {
+                Console.Write(v);
+            }
+            Console.Write('\n');
+        }
 
     }
 }

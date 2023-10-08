@@ -1,23 +1,9 @@
 ﻿
-namespace Optimization;
+namespace Application;
 
 class FirstFit
 {
-    private static bool _isCoveredAllElements(List<int> uSet, List<Subset> solution)
-    {
-        foreach (var subset in solution)
-        {
-            uSet.RemoveAll(elem => subset.SubSet.Contains(elem));
-        }
-
-        return !uSet.Any();
-    }
-
-    private static IEnumerable<int> _findCoveredElements(IEnumerable<int> uSet, IEnumerable<Subset> solution)
-    {
-        return solution.SelectMany(subset => subset.SubSet);
-    }
-    
+        
     public static IEnumerable<Subset> FindFirstSolution(List<int> uSet, List<Subset> subsets)
     {
         // 1.Step - Init empty set
@@ -33,5 +19,20 @@ class FirstFit
         }
 
         return solution;
+    }
+    
+    private static bool _isCoveredAllElements(List<int> uSet, List<Subset> solution)
+    {
+        foreach (var subset in solution)
+        {
+            uSet.RemoveAll(elem => subset.SubSet.Contains(elem));
+        }
+
+        return !uSet.Any();
+    }
+
+    private static IEnumerable<int> _findCoveredElements(IEnumerable<int> uSet, IEnumerable<Subset> solution)
+    {
+        return solution.SelectMany(subset => subset.SubSet);
     }
 }

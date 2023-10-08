@@ -7,27 +7,14 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "Application/1.0.0": {
-        "dependencies": {
-          "Optimization": "1.0.0"
-        },
         "runtime": {
           "Application.dll": {}
-        }
-      },
-      "Optimization/1.0.0": {
-        "runtime": {
-          "Optimization.dll": {}
         }
       }
     }
   },
   "libraries": {
     "Application/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Optimization/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

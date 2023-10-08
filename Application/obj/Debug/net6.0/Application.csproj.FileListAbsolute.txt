@@ -13,9 +13,3 @@ D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Maza
 D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\obj\Debug\net6.0\Application.pdb
 D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\obj\Debug\net6.0\Application.genruntimeconfig.cache
 D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\obj\Debug\net6.0\ref\Application.dll
-D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\bin\Debug\net6.0\Optimization.deps.json
-D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\bin\Debug\net6.0\Optimization.runtimeconfig.json
-D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\bin\Debug\net6.0\Optimization.exe
-D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\bin\Debug\net6.0\Optimization.dll
-D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\bin\Debug\net6.0\Optimization.pdb
-D:\Programmesana\Magistrs\I semestris\Praktiska_kombinatoriala_optimizacija\Mazais_praktiskais_darbs\Practical-Combinatorial-Optimization\Application\obj\Debug\net6.0\Application.csproj.CopyComplete

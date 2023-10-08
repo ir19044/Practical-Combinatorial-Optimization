@@ -1,4 +1,4 @@
-namespace Optimization;
+namespace Application;
 
 public class Subset
 {
