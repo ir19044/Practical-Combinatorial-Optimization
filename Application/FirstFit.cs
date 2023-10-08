@@ -1,7 +1,7 @@
 ﻿
 namespace Application;
 
-class FirstFit
+public class FirstFit
 {
         
     public static IEnumerable<Subset> FindFirstSolution(List<int> uSet, List<Subset> subsets)
@@ -10,11 +10,20 @@ class FirstFit
         var solution = new List<Subset>();
         
         // 2.Step - Cover all elements of U
-        while (!_isCoveredAllElements(uSet ,solution))
+        while (!_isCoveredAllElements(uSet, solution))
         {
-            var coveredElems = _findCoveredElements(uSet, solution);
-            var optSet = subsets.MaxBy(x => x.SubSet.Except(coveredElems).Count());
+            var covered = _findCoveredElements(uSet, solution).ToList();
+            var uncovered = uSet.Except(covered);
+            var optimalSubset = subsets.MaxBy(subset => subset.SubSet.Except(covered).Count());
             
+            // at least one new element covered => good!
+            var optSet = uncovered.Any(e => optimalSubset != null && optimalSubset.SubSet.Contains(e))
+                ? optimalSubset
+                : null;
+            
+            // otherwise => not possible cover all elements!
+            if (optSet == null) break;
+
             solution.Add(optSet);
         }
 

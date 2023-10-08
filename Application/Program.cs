@@ -35,7 +35,6 @@ class Program
     {
         InitMembers();
 
-        // TODO: bug: 500, beta:3
         //var temperature = Temperature.CreateWithDefaults();
         var temperature = new Temperature(tempStateCount: 1000);
 

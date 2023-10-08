@@ -69,8 +69,8 @@ public class SimulatedAnnealing
         List<Subset> newSolution;
         
         var dice = _getRandomNumber();
-
-        if (_isListsEqual(currSol,subsets)) newSolution = _removeRandomSet(currSol, subsets); //Selected all
+        
+        if (Subset.IsEqual(currSol,subsets)) newSolution = _removeRandomSet(currSol, subsets); //Selected all
         else if (!currSol.Any()) newSolution = _addRandomSet(currSol, subsets); // Selected nothing
         else
             newSolution = dice switch
@@ -81,18 +81,6 @@ public class SimulatedAnnealing
             };
 
         return newSolution;
-    }
-
-    private static bool _isListsEqual(ICollection<Subset> fList, ICollection<Subset> sList)
-    {
-        if (!fList.Any() && !sList.Any())
-            return true;
-
-        if (!fList.Any() || !sList.Any()) //only one is empty
-            return false;
-
-        return fList.Count == sList.Count &&
-               fList.All(sList.Contains) && sList.All(fList.Contains);
     }
 
     private static List<Subset> _addRandomSet(IReadOnlyCollection<Subset> currSol,IEnumerable<Subset> subsets)

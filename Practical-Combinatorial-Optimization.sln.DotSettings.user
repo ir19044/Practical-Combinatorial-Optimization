@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=728fab6c_002D9fdd_002D4c79_002Dabc1_002Def292e966b3a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="SimulatedAnnealingTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::1CAF5E5F-7E1D-40CE-99A5-E8CB84ED9D5C::net6.0::Application.Tests.SimulatedAnnealingTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::1CAF5E5F-7E1D-40CE-99A5-E8CB84ED9D5C::net6.0::Application.Tests.FirstFitTest.TestMethod1&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::1CAF5E5F-7E1D-40CE-99A5-E8CB84ED9D5C::net6.0::Application.Tests.FirstFitTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
