@@ -15,7 +15,7 @@ class Program
         var alg = new SimulatedAnnealing(temperature, beta: 3);
         var solution = alg.Process(uSet, subsets);
 
-        foreach (var subset in solution)
+        foreach (var subset in solution.SelectedSubsets)
         {
             foreach (var v in subset.SubSet)
             {

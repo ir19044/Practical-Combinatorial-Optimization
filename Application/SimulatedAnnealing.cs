@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Application;
 
 public class SimulatedAnnealing
@@ -15,8 +17,10 @@ public class SimulatedAnnealing
         _gamma = gamma;
     }
 
-    public List<Subset> Process(List<int> uSet, List<Subset> subsets)
+    public Result Process(List<int> uSet, List<Subset> subsets)
     {
+        var startTime = DateTime.Now;
+        
         // 1.Step - Init Annealing lists
         var tempList = new List<decimal>(_temperature.TempList) { 0m };
         var stepList = _temperature.StepList;
@@ -24,7 +28,9 @@ public class SimulatedAnnealing
         // 2. Step - Find First Solution
         
         var currentSol = FirstFit.FindFirstSolution(uSet, subsets).ToList();
-        var bestSol = currentSol;
+        var bestSol = new List<Subset>(currentSol);
+
+        var startCost = _calculateCostFun(uSet, currentSol);
 
         // 3. Step - Solve
         
@@ -39,7 +45,13 @@ public class SimulatedAnnealing
                 var anotherCost = _calculateCostFun(uSet, anotherSol);
                 var bestCost = _calculateCostFun(uSet, bestSol);
 
-                if (curCost < bestCost) bestSol = anotherSol;
+                if (anotherCost < bestCost)
+                {
+                    if(startCost < anotherCost)
+                        Console.Write("why?");
+                    bestSol = anotherSol;
+                }
+
                 if (anotherCost < curCost || _getRandomNumber() < _eFun(curCost, anotherCost, tempList[k]))
                 {
                     currentSol = anotherSol;
@@ -49,7 +61,14 @@ public class SimulatedAnnealing
             k += 1;
         } while (tempList[k] != 0);
 
-        return bestSol;
+        var endTime = DateTime.Now;
+
+        return new Result(
+            selectedSubsets: bestSol,
+            startCost: startCost,
+            endCost: _calculateCostFun(uSet, bestSol),
+            timeProcessed: new DateTime((endTime - startTime).Ticks)
+        );
     }
 
     private static int _calculateCostFun(IEnumerable<int> uSet, List<Subset> solution)
@@ -83,7 +102,7 @@ public class SimulatedAnnealing
         return newSolution;
     }
 
-    private static List<Subset> _addRandomSet(IReadOnlyCollection<Subset> currSol,IEnumerable<Subset> subsets)
+    private static List<Subset> _addRandomSet(IReadOnlyCollection<Subset> currSol, IEnumerable<Subset> subsets)
     {
         var unusedSubsets = subsets.Except(currSol).ToList();
         return new List<Subset>(currSol) { _getRandomSet(unusedSubsets) };
@@ -91,17 +110,22 @@ public class SimulatedAnnealing
 
     private static List<Subset> _removeRandomSet(List<Subset> currSol, IReadOnlyList<Subset> subsets)
     {
-        currSol.Remove(_getRandomSet(subsets));
-        return currSol;
+        var newSolution = new List<Subset>(currSol);
+        newSolution.Remove(_getRandomSet(subsets));
+        
+        return newSolution;
     }
 
     private static List<Subset> _replaceRandomSet(List<Subset> currSol, IEnumerable<Subset> subsets)
     {
         var usedSet = _getRandomSet(currSol);
         var newSet = _getRandomSet(subsets.Except(currSol).ToList());
-        currSol.Remove(usedSet);
-        currSol.Add(newSet);
-        return currSol;
+
+        var newSolution = new List<Subset>(currSol);
+        newSolution.Remove(usedSet);
+        newSolution.Add(newSet);
+        
+        return newSolution;
     }
 
     private static Subset _getRandomSet(IReadOnlyList<Subset> subsets)
