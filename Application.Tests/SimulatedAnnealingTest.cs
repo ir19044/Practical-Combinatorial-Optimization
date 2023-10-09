@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Application.Tests;
 
@@ -6,7 +7,15 @@ namespace Application.Tests;
 [TestClass]
 public class SimulatedAnnealingTest
 {
-    
+    private static TestContext testContextInstance;
+
+    // Property to access the TestContext instance
+    public TestContext TestContext
+    {
+        get { return testContextInstance; }
+        set { testContextInstance = value; }
+    }
+
     // MethodName: <What to test?>_<Test Input>_<Expected Output>
     [TestMethod]
     [DataRow(80)]
@@ -216,6 +225,9 @@ public class SimulatedAnnealingTest
     private static (List<Result> Result, decimal Precision)_runSimulatedAnnealing(
         List<int> uSet, List<Subset> subsets, int expectedCost, int shots = 1000)
     {
+        Debug.WriteLine($"Starting test: {testContextInstance.TestName}");
+        Debug.WriteLine("================================================================");
+
         var results = new List<Result>();
 
         var temperature = new Temperature(tempStateCount: 1000); //default count of steps to decrease temperature
@@ -223,6 +235,14 @@ public class SimulatedAnnealingTest
 
         for (var i = 0; i < shots; i++) results.Add(alg.Process(uSet, subsets));
         var precision = Math.Round((decimal)results.Count(x => x.EndCost == expectedCost) / shots, 4);
+        
+        Debug.WriteLine($"Probability of the best solution: {precision*100} % ({shots} shots)");
+        Debug.WriteLine($"Expected cost:                    {expectedCost}");
+        Debug.WriteLine($"First fit found cost:             {results.First().StartCost}");
+        Debug.WriteLine($"The best found cost:              {results.Min(x => x.EndCost)}");
+        Debug.WriteLine($"1 shot execution time:            {Math.Round(results.First().TimeProcessed, 4)} seconds");
+        Debug.WriteLine($"{shots} shots execution time:        {Math.Round(results.Sum(x => x.TimeProcessed), 4)} seconds");
+        Debug.WriteLine("================================================================ \n \n");
 
         return (results, precision);
     }

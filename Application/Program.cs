@@ -6,11 +6,13 @@ class Program
     public static List<Subset> subsets; //Set of subsets with each subset weight
     private static List<Subset> _solution; // Set of subsets as solution
 
+    private static Dictionary<int, string> _cheaterDict; // Dict of cheater id & name
+
     static void Main()
     {
         _initMembers(isDefault: false);
         
-        var temperature = new Temperature(tempStateCount: 1000);
+        var temperature = new Temperature(tempStateCount: 1000); // 1000 - default count of temperature changes
 
         var alg = new SimulatedAnnealing(temperature, beta: 3);
         var solution = alg.Process(uSet, subsets);
@@ -47,11 +49,11 @@ class Program
         else
         {
             // 1.Step - read cheater names
-            var cheaterDict = _readCheatersFromConsole();
-            _printCheaters(cheaterDict);
+            _cheaterDict = _readCheatersFromConsole();
+            _printCheaters(_cheaterDict);
 
             uSet = new List<int>();
-            foreach (var (key,_) in cheaterDict) uSet.Add(key);
+            foreach (var (key,_) in _cheaterDict) uSet.Add(key);
             
             // 2.Step - read cheater groups
             var subsetsWithoutTime = _readCheaterGroupsFromConsole();

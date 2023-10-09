@@ -19,8 +19,9 @@ public class SimulatedAnnealing
 
     public Result Process(List<int> uSet, List<Subset> subsets)
     {
-        var startTime = DateTime.Now;
-        
+        var watch = new Stopwatch();
+        watch.Start();
+
         // 1.Step - Init Annealing lists
         var tempList = new List<decimal>(_temperature.TempList) { 0m };
         var stepList = _temperature.StepList;
@@ -63,13 +64,13 @@ public class SimulatedAnnealing
             k += 1;
         } while (tempList[k] != 0);
 
-        var endTime = DateTime.Now;
+        watch.Stop();
 
         return new Result(
             selectedSubsets: bestSol,
             startCost: startCost,
             endCost: _calculateCostFun(uSet, bestSol),
-            timeProcessed: new DateTime((endTime - startTime).Ticks)
+            timeProcessed: watch.ElapsedMilliseconds / 1000.0
         );
     }
 
