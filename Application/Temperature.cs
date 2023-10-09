@@ -18,7 +18,7 @@ public struct Temperature
         GenerateTemperatureList();
     }
 
-    private void GenerateTemperatureList()
+    private void GenerateTemperatureList() //linear decreasing function
     {
         var tempStep = (TempStart - TempEnd) / (TempStateCount - 1);
 

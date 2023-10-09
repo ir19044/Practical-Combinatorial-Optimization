@@ -50,8 +50,6 @@ public class SimulatedAnnealing
 
                 if (anotherCost < bestCost)
                 {
-                    if(startCost < anotherCost)
-                        Console.Write("why?");
                     bestSol = anotherSol;
                 }
 
