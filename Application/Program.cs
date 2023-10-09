@@ -14,18 +14,12 @@ class Program
         
         var temperature = new Temperature(tempStateCount: 1000); // 1000 - default count of temperature changes
 
-        var alg = new SimulatedAnnealing(temperature, beta: 3);
+        // beta - Weight for Count of uncovered elements
+        // gamma - Weight for timeToVisit of chosen subsets
+        var alg = new SimulatedAnnealing(temperature, beta: 3, gamma: 1);
         var solution = alg.Process(uSet, subsets);
-
-        foreach (var subset in solution.SelectedSubsets)
-        {
-            foreach (var v in subset.SubSet)
-            {
-                Console.Write(v);
-            }
-            Console.Write('\n');
-        }
-
+        
+        _printResults(solution);
     }
 
     private static void _initMembers(bool isDefault = true)
@@ -171,5 +165,22 @@ class Program
             Console.WriteLine($"Grupa: {string.Join(" ", group.SubSet)}; Laiks apmeklejumam: {group.Weight};");
         }
         Console.WriteLine(); // empty line
+    }
+
+    private static void _printResults(Result solution)
+    {
+        Console.WriteLine("Rezultati ir gatavi!");
+        Console.WriteLine("================================================================");
+        Console.WriteLine($"Izmaksu funkcijas vertiba sakuma :   {solution.StartCost}");
+        Console.WriteLine($"Izmaksu funkcijas vertiba beigas :   {solution.EndCost}");
+        Console.WriteLine($"Izpildes laiks:                      {Math.Round(solution.TimeProcessed, 4)} seconds");
+        Console.WriteLine($"Grupu kopejais apmeklesanas laiks:   {solution.SelectedSubsets.Sum(x => x.Weight)}");
+        Console.WriteLine("Blezu grupas:");
+
+        foreach (var subset in solution.SelectedSubsets)
+        {
+            Console.Write("Grupa: [" + string.Join(",", subset.SubSet) + "] jeb ");
+            Console.WriteLine("[" + string.Join(",", subset.SubSet.Select(s => _cheaterDict[s])) + "]");
+        }
     }
 }
