@@ -37,6 +37,8 @@ public class SimulatedAnnealing
         var k = 0;
         do
         {
+            if (!subsets.Any()) break; // not possible cover any
+            
             for (var n = 0; n < stepList[n]; n++)
             {
                 var anotherSol = _generateNewSolution(currentSol, subsets);
