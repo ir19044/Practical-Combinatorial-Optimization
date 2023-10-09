@@ -12,8 +12,8 @@ public class SimulatedAnnealingTest
     // Property to access the TestContext instance
     public TestContext TestContext
     {
-        get { return testContextInstance; }
-        set { testContextInstance = value; }
+        get => testContextInstance;
+        set => testContextInstance = value;
     }
 
     // MethodName: <What to test?>_<Test Input>_<Expected Output>
